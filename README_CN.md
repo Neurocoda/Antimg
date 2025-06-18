@@ -1,4 +1,4 @@
-# Antimg - 盲水印对抗工具
+# Antimg - 图片盲水印对抗工具
 
 [![Main  Build](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml)[![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg)](https://hub.docker.com/r/neurocoda/antimg) [![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg-api)](https://hub.docker.com/r/neurocoda/antimg-api)[![Go Report Card](https://goreportcard.com/badge/github.com/Neurocoda/Antimg)](https://goreportcard.com/report/github.com/Neurocoda/Antimg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -77,7 +77,7 @@ docker-compose up -d --build
 
 管理员登录 Web 控制台后可在"API管理"页面进行令牌的管理（查看/刷新）。
 
-> IOS Shortcut: https://www.icloud.com/shortcuts/778f82e2dd924a28a41ed0682ba5ff31
+> Apple Shortcut: https://www.icloud.com/shortcuts/778f82e2dd924a28a41ed0682ba5ff31
 
 #### 认证鉴权
 
