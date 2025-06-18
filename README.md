@@ -1,12 +1,34 @@
-# Antimg - An Image Blind Watermark Attack Tool
-
-[![Main  Build](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml)[![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg)](https://hub.docker.com/r/neurocoda/antimg) [![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg-api)](https://hub.docker.com/r/neurocoda/antimg-api)[![Go Report Card](https://goreportcard.com/badge/github.com/Neurocoda/Antimg)](https://goreportcard.com/report/github.com/Neurocoda/Antimg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 <div align="center">
+  
+  <h1 style="font-size: 2.5em; margin: 0; line-height: 1.2;">Antimg</h1>
+  
+  <h4 style="font-size: 1.3em; margin: 0.3em 0 1.2em; color: #666; font-weight: 400;">
+    An Image Blind Watermark Attack Tool
+  </h4>
+
+  <div style="margin: 1.8em 0 3em; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+    <a href="https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml" style="text-decoration: none;">
+      <img src="https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml/badge.svg" alt="Build">
+    </a>
+    <a href="https://hub.docker.com/r/neurocoda/antimg" style="text-decoration: none;">
+      <img src="https://img.shields.io/docker/pulls/neurocoda/antimg?logo=docker" alt="Docker Pulls">
+    </a>
+    <a href="https://hub.docker.com/r/neurocoda/antimg-api" style="text-decoration: none;">
+      <img src="https://img.shields.io/docker/pulls/neurocoda/antimg-api?logo=docker" alt="API Pulls">
+    </a>
+    <a href="https://goreportcard.com/report/github.com/Neurocoda/Antimg" style="text-decoration: none;">
+      <img src="https://goreportcard.com/badge/github.com/Neurocoda/Antimg" alt="Go Report"> 
+    </a>
+    <a href="https://opensource.org/licenses/MIT" style="text-decoration: none;">
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+    </a>
+  </div>
+  
   <img src="static/logo.svg" alt="Antimg" width="180">
 </div>
 
-A image Blind Watermark attack processing tool with Docker deployment support and comprehensive security features. 
+
+
 
 [中文文档](README_CN.md)
 
