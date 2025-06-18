@@ -10,6 +10,7 @@ ARG TARGETVARIANT
 ARG BUILDTIME
 ARG VERSION
 ARG REVISION
+ARG CACHE_BUSTER=default  # 新增缓存破坏参数
 
 # 设置工作目录
 WORKDIR /app
@@ -23,7 +24,7 @@ COPY go.mod go.sum ./
 # 下载依赖
 RUN go mod download && go mod verify
 
-# 复制源代码
+# 复制源代码 - 使用缓存破坏参数
 COPY . .
 
 # 构建应用 - 支持交叉编译
