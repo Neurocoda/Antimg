@@ -55,7 +55,13 @@ jobs:
           build-args: |
             VERSION=${{ github.ref_name }}
             REVISION=${{ github.sha }}
-            BUILDTIME=${{ github.event.head_commit.timestamp || now() }}
-            CACHE_BUSTER=${{ github.sha }}  # 关键：使用commit SHA破坏缓存
+            BUILDTIME=${{ github.event.head_commit.timestamp || github.context.job.started_at }}
+            CACHE_BUSTER=${{ github.sha }}
           cache-from: type=gha,scope=${{ github.workflow }}-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=${{ github.workflow }}-${{ github.ref }}
+
+      - name: Verify timestamps
+        if: always()
+        run: |
+          echo "Commit timestamp: ${{ github.event.head_commit.timestamp || 'N/A' }}"
+          echo "Job start time: ${{ github.context.job.started_at }}"
