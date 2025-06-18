@@ -1,0 +1,889 @@
+{{define "base.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.title}}</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/static/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/static/favicon-144x144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/static/web-app-manifest-512x512.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#0071e3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Antimg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <style>
+        :root {
+            --primary: #18181a;
+            --secondary: #6e6e73;
+            --card-bg: rgba(255,255,255,0.85);
+            --card-blur: blur(24px);
+            --shadow: 0 4px 24px 0 rgba(44, 62, 80, 0.09);
+            --accent: #0071e3;
+            --success: #30d158;
+            --warning: #ff9f0a;
+            --error: #ff453a;
+            --footer-bg: rgba(240,240,245,0.85);
+            --glass-border: rgba(255,255,255,0.2);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--primary);
+            background: #f4f6fb;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        /* 动态背景光斑 */
+        .bg-spot {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity 1s, transform 1.5s;
+        }
+
+        .bg-spot1 {
+            top: -180px;
+            left: -120px;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .bg-spot2 {
+            top: 60%;
+            right: -150px;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            animation: float2 10s ease-in-out infinite;
+        }
+
+        .bg-spot3 {
+            bottom: -200px;
+            left: 30%;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            animation: float3 12s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-40px, -20px) rotate(180deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -40px) rotate(90deg); }
+            75% { transform: translate(-30px, 10px) rotate(270deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: var(--card-bg);
+            backdrop-filter: var(--card-blur);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            max-width: 200px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        .lang-switch {
+            display: flex;
+            background: rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 0.25rem;
+            margin-right: 1rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 用户菜单样式 */
+        .user-menu {
+            position: relative;
+        }
+
+        .user-btn {
+            background: rgba(255,255,255,0.3);
+            border: none;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .user-btn:hover {
+            background: rgba(255,255,255,0.5);
+            transform: translateY(-1px);
+        }
+
+        .user-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+        }
+
+        .dropdown-arrow {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .user-btn.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-item svg {
+            flex-shrink: 0;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: var(--card-bg);
+            backdrop-filter: var(--card-blur);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .user-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-info {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(0,0,0,0.05);
+            color: var(--error);
+        }
+
+        .main-center {
+            flex: 1;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-center.center-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: var(--card-blur);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem auto;
+        }
+
+        .card-compact {
+            max-width: 600px;
+        }
+
+        .card-wide {
+            max-width: 1200px;
+        }
+
+        .card-full {
+            max-width: 100%;
+        }
+
+        .card-login {
+            max-width: 420px;
+            width: 100%;
+        }
+
+        /* 响应式设计：在大屏幕上增加登录卡片宽度，提供更好的视觉体验 */
+        @media (min-width: 640px) {
+            .card-login {
+                max-width: 480px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card-login {
+                max-width: 540px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .card-login {
+                max-width: 640px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .card-login {
+                max-width: 720px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .card-login {
+                max-width: 800px;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .card-login {
+                max-width: 900px;
+            }
+        }
+
+        /* 超大屏幕优化 (4K 显示器等) */
+        @media (min-width: 2560px) {
+            .card-login {
+                max-width: 1000px;
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.7);
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,113,227,0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #00d4aa);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 8px 25px rgba(48,209,88,0.3);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .alert-error {
+            background: rgba(255,69,58,0.1);
+            color: var(--error);
+            border: 1px solid rgba(255,69,58,0.2);
+        }
+
+        .alert-success {
+            background: rgba(48,209,88,0.1);
+            color: var(--success);
+            border: 1px solid rgba(48,209,88,0.2);
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--accent);
+            background: rgba(0,113,227,0.05);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .table th, .table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .table th {
+            background: rgba(0,0,0,0.05);
+            font-weight: 600;
+        }
+
+        /* 大屏幕优化 */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1600px;
+            }
+            
+            .card-wide {
+                max-width: 1400px;
+            }
+        }
+
+        @media (min-width: 1800px) {
+            .container {
+                max-width: 1800px;
+            }
+            
+            .card-wide {
+                max-width: 1600px;
+            }
+        }
+
+        /* 中等屏幕优化 */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%;
+                padding: 0 1.5rem;
+            }
+            
+            .card-wide {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+                margin: 0.5rem;
+            }
+            
+            .header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            /* 移动端用户菜单优化 */
+            .user-dropdown {
+                right: -1rem;
+                left: -1rem;
+                min-width: auto;
+                margin-top: 0.25rem;
+            }
+
+            .user-btn {
+                padding: 0.4rem 0.8rem;
+            }
+
+            .user-name {
+                font-size: 0.8rem;
+            }
+
+            .avatar-circle {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1rem;
+                margin: 0.25rem;
+            }
+            
+            .container {
+                padding: 0 0.5rem;
+            }
+        }
+
+        /* 图片处理动画样式 */
+        .processing-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0,113,227,0.1);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .image-comparison-active #originalImageContainer {
+            width: 48% !important;
+            margin-right: 4%;
+        }
+
+        .image-comparison-active #processedImageContainer {
+            display: block !important;
+            opacity: 1 !important;
+            transform: translateX(0) !important;
+        }
+
+        /* 图片悬停效果 */
+        #processedImg:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,113,227,0.2);
+        }
+
+        /* 下载按钮动画 */
+        #downloadBtn {
+            background: linear-gradient(135deg, var(--success), #00d4aa);
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式图片对比 */
+        @media (max-width: 768px) {
+            .image-comparison-active #originalImageContainer {
+                width: 100% !important;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .image-comparison-active #processedImageContainer {
+                position: relative !important;
+                width: 100% !important;
+                top: auto !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div class="bg-spot bg-spot1"></div>
+    <div class="bg-spot bg-spot2"></div>
+    <div class="bg-spot bg-spot3"></div>
+
+    <div class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="Antimg" style="height: 32px; width: auto;">
+            </a>
+            <div class="nav">
+                <div class="lang-switch">
+                    <button class="lang-btn" onclick="switchLanguage('zh')" id="lang-zh">中文</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">EN</button>
+                </div>
+                {{if .username}}
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <div class="user-avatar">
+                                <img src="/static/avatar.svg" alt="User Avatar" style="width: 28px; height: 28px; border-radius: 50%;">
+                            </div>
+                            <span class="user-name">{{.username}}</span>
+                            <div class="dropdown-arrow">
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <span data-i18n="welcome">欢迎</span>, {{.username}}
+                            </div>
+                            <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid rgba(0,0,0,0.1);">
+                            <a href="/logout" class="dropdown-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polyline points="16,17 21,12 16,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span data-i18n="logout">退出登录</span>
+                            </a>
+                        </div>
+                    </div>
+                {{else}}
+                    <a href="/login" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                        <span data-i18n="adminLogin">管理员登录</span>
+                    </a>
+                {{end}}
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-center {{if eq .page "login"}}center-content{{end}}">
+        <div class="container">
+            {{if eq .page "login"}}
+                {{template "login" .}}
+            {{else if eq .page "process"}}
+                {{template "process" .}}
+            {{end}}
+        </div>
+    </div>
+
+    <script>
+        // 语言切换功能
+        let currentLang = localStorage.getItem('language') || 'en';
+        
+        const translations = {
+            zh: {
+                welcomeBack: "欢迎回来",
+                loginDesc: "登录您的 Antimg 账户",
+                username: "用户名",
+                password: "密码",
+                loginBtn: "登录账户",
+                welcome: "欢迎",
+                logout: "退出",
+                login: "登录",
+                loginFailed: "登录失败",
+                // Process page translations
+                pageTitle: "图像处理工作台",
+                pageDesc: "上传图片并使用先进的算法进行水印攻击处理",
+                processFailed: "处理失败",
+                processSuccess: "处理成功",
+                uploadTitle: "上传图片",
+                uploadHint: "拖拽图片到此处或点击选择",
+                uploadFormats: "支持 JPEG、PNG、BMP、WebP 格式，无大小和尺寸限制",
+                selectFile: "选择文件",
+                currentImage: "当前图片",
+                fileName: "文件名:",
+                imageDimensions: "图片尺寸:",
+                attackStrength: "攻击强度",
+                weak: "弱 (0.0)",
+                strong: "强 (1.0)",
+                strengthTip: "推荐值：0.5 - 0.8，值越高攻击效果越强",
+                processImage: "处理图片",
+                reupload: "重新上传",
+                processing: "正在处理图片，请稍候...",
+                apiGuide: "API 调用指南",
+                apiEndpoint: "API 端点",
+                apiToken: "API Token",
+                permanent: "永久有效",
+                copyToken: "复制 Token",
+                resetToken: "重置 Token",
+                requestParams: "请求参数",
+                imageFile: "图片文件",
+                required: "必需",
+                attackLevel: "攻击强度",
+                defaultStrength: "默认强度:",
+                recommendedRange: "推荐范围:",
+                exampleCode: "示例代码",
+                copyCurl: "复制 cURL 命令",
+                originalImage: "原图",
+                processedImage: "处理后",
+                currentAttackLevel: "当前攻击强度:",
+                downloadImage: "下载图片"
+            },
+            en: {
+                welcomeBack: "Welcome Back",
+                loginDesc: "Sign in to your Antimg account",
+                username: "Username",
+                password: "Password",
+                loginBtn: "Sign In",
+                welcome: "Welcome",
+                logout: "Logout",
+                login: "Login", 
+                loginFailed: "Login Failed",
+                // Process page translations
+                pageTitle: "Image Processing Workbench",
+                pageDesc: "Upload images and process them with advanced watermark attack algorithms",
+                processFailed: "Processing Failed",
+                processSuccess: "Processing Successful",
+                uploadTitle: "Upload Image",
+                uploadHint: "Drag image here or click to select",
+                uploadFormats: "Supports JPEG, PNG, BMP, WebP formats, no size or dimension limits",
+                selectFile: "Select File",
+                currentImage: "Current Image",
+                fileName: "File Name:",
+                imageDimensions: "Image Dimensions:",
+                attackStrength: "Attack Strength",
+                weak: "Weak (0.0)",
+                strong: "Strong (1.0)",
+                strengthTip: "Recommended: 0.5 - 0.8, higher values mean stronger attack effects",
+                processImage: "Process Image",
+                reupload: "Re-upload",
+                processing: "Processing image, please wait...",
+                apiGuide: "API Usage Guide",
+                apiEndpoint: "API Endpoint",
+                apiToken: "API Token",
+                permanent: "Permanent",
+                copyToken: "Copy Token",
+                resetToken: "Reset Token",
+                requestParams: "Request Parameters",
+                imageFile: "Image File",
+                required: "Required",
+                attackLevel: "Attack Level",
+                defaultStrength: "Default Strength:",
+                recommendedRange: "Recommended Range:",
+                exampleCode: "Example Code",
+                copyCurl: "Copy cURL Command",
+                originalImage: "Original",
+                processedImage: "Processed",
+                currentAttackLevel: "Current Attack Level:",
+                downloadImage: "Download Image"
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.textContent = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('input[data-placeholder-zh]').forEach(input => {
+                if (currentLang === 'zh') {
+                    input.placeholder = input.getAttribute('data-placeholder-zh');
+                } else {
+                    input.placeholder = input.getAttribute('data-placeholder-en') || '';
+                }
+            });
+
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('lang-' + currentLang).classList.add('active');
+        }
+
+        // 用户菜单功能
+        function toggleUserMenu() {
+            const userBtn = document.querySelector('.user-btn');
+            const dropdown = document.getElementById('userDropdown');
+            
+            userBtn.classList.toggle('active');
+            dropdown.classList.toggle('show');
+        }
+
+        // 点击外部关闭菜单
+        document.addEventListener('click', function(event) {
+            const userMenu = document.querySelector('.user-menu');
+            if (userMenu && !userMenu.contains(event.target)) {
+                const userBtn = document.querySelector('.user-btn');
+                const dropdown = document.getElementById('userDropdown');
+                if (userBtn && dropdown) {
+                    userBtn.classList.remove('active');
+                    dropdown.classList.remove('show');
+                }
+            }
+        });
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage();
+        });
+    </script>
+</body>
+</html>
+{{end}}
