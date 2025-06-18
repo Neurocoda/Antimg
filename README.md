@@ -2,7 +2,9 @@
 
 [![Main  Build](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml)[![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg)](https://hub.docker.com/r/neurocoda/antimg) [![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg-api)](https://hub.docker.com/r/neurocoda/antimg-api)[![Go Report Card](https://goreportcard.com/badge/github.com/Neurocoda/Antimg)](https://goreportcard.com/report/github.com/Neurocoda/Antimg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<img src="static/logo.svg" alt="Antimg" style="width: 180px; display: block; margin: 0 auto;">
+<div align="center">
+  <img src="static/logo.svg" alt="Antimg" width="180">
+</div>
 
 A image Blind Watermark attack processing tool with Docker deployment support and comprehensive security features. 
 
