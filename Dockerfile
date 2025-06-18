@@ -1,5 +1,5 @@
 # 多阶段构建 - 支持多平台
-FROM --platform=$BUILDPLATFORM golang:1.22-alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:1.24-alpine AS builder
 
 # 构建参数
 ARG TARGETPLATFORM
