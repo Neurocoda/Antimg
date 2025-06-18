@@ -20,6 +20,7 @@ A image Blind Watermark attack processing tool with Docker deployment support an
 - 🖥️ **Interactive Web UI**: Intuitive browser-based interface
 - 🔌 **API Support**: Supports API calls to provide processing support for low-powered devices.
 - 📦 **Format Support**: **JPEG**, **PNG**, **BMP**, **WebP** with automatic format detection
+- 🍎 Shortcut: Provides ISO Shortcut for rapidly invoking APIs to process images.
 
 **Live Demo:** [Demo Site](https://antimg.neurocoda.com)
 
