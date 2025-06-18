@@ -66,7 +66,7 @@ func SetupRoutes() *gin.Engine {
 		
 		// 渲染工作台页面
 		c.HTML(http.StatusOK, "base.html", gin.H{
-			"title":      "图像处理工作台 - Antimg",
+			"title":      "Antimg",
 			"username":   username,
 			"token":      token,
 			"baseURL":    baseURL,
@@ -111,3 +111,4 @@ func SetupRoutes() *gin.Engine {
 
 	return r
 }
+

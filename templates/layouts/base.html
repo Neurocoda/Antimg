@@ -44,6 +44,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Antimg">
     
+    <!-- 不蒜子统计服务 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css">
     <style>
@@ -513,6 +516,42 @@
             gap: 1rem;
         }
 
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-stats {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+
+        .stat-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+        }
+
+        .stat-counter svg {
+            opacity: 0.7;
+        }
+
+        .stat-number {
+            color: var(--accent);
+            font-weight: 600;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+
+        .stat-divider {
+            opacity: 0.5;
+            font-weight: 300;
+        }
+
         .footer-bottom p {
             color: var(--secondary);
             font-size: 0.9rem;
@@ -551,7 +590,23 @@
             .footer-bottom-content {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
+            }
+            
+            .footer-left {
+                order: 2;
+            }
+            
+            .footer-stats {
+                order: 1;
+                justify-content: center;
+                flex-wrap: wrap;
                 gap: 0.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .stat-counter {
+                gap: 0.3rem;
             }
             
             .github-link {
@@ -959,7 +1014,7 @@
             <div class="footer-section">
                 <h4 data-i18n="footerLinks">快速链接</h4>
                 <ul class="footer-links">
-                    <li><a href="/" data-i18n="home">首页</a></li>
+                    <!-- <li><a href="/" data-i18n="home">首页</a></li> -->
                     <li><a href="/login" data-i18n="adminLogin">管理员登录</a></li>
                     <li><a href="https://github.com/Neurocoda/Antimg/blob/main/README.md" target="_blank" data-i18n="documentation">文档</a></li>
                 </ul>
@@ -993,11 +1048,32 @@
         
         <div class="footer-bottom">
             <div class="footer-bottom-content">
-                <p>&copy; 2024 <a href="https://github.com/Neurocoda" target="_blank" class="neurocoda-link">Neurocoda</a>. <span data-i18n="footerRights">保留所有权利</span>.</p>
-                <div class="footer-tech">
-                    <span data-i18n="footerMadeWith">基于</span> 
-                    <span class="tech-stack">Go + Docker</span> 
-                    <span data-i18n="footerBuilt">构建</span>
+                <div class="footer-left">
+                    <p>&copy; 2025 <a href="https://neurocoda.com" target="_blank" class="neurocoda-link">Neurocoda</a>. <span data-i18n="footerRights">保留所有权利</span>.</p>
+                    <div class="footer-tech">
+                        <span data-i18n="footerMadeWith">基于</span> 
+                        <span class="tech-stack">Go + Docker</span> 
+                        <span data-i18n="footerBuilt">构建</span>
+                    </div>
+                </div>
+                
+                <!-- 不蒜子统计 -->
+                <div class="footer-stats">
+                    <span id="busuanzi_container_site_uv" class="stat-counter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span data-i18n="visitorCount">VISITOR COUNT</span>: <span id="busuanzi_value_site_uv" class="stat-number">-</span>
+                    </span>
+                    <span class="stat-divider">|</span>
+                    <span id="busuanzi_container_site_pv" class="stat-counter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span data-i18n="totalPageViews">TOTAL PAGE VIEWS</span>: <span id="busuanzi_value_site_pv" class="stat-number">-</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1027,7 +1103,10 @@
                 footerRights: "保留所有权利",
                 footerMadeWith: "基于",
                 footerBuilt: "构建",
-                home: "首页",
+                visitorCount: "访客数",
+                totalPageViews: "总访问量",
+                // home: "首页",
+                adminLogin: "管理员登录",
                 documentation: "文档",
                 // Process page translations
                 pageTitle: "图像处理工作台",
@@ -1086,7 +1165,10 @@
                 footerRights: "All rights reserved",
                 footerMadeWith: "Built with",
                 footerBuilt: "",
-                home: "Home",
+                visitorCount: "VISITOR COUNT",
+                totalPageViews: "TOTAL PAGE VIEWS",
+                // home: "Home",
+                adminLogin: "Administrator Login",
                 documentation: "Documentation",
                 // Process page translations
                 pageTitle: "Image Processing Workbench",

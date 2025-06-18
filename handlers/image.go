@@ -75,7 +75,7 @@ func (h *ImageHandler) ProcessPage(c *gin.Context) {
 	baseURL := scheme + "://" + c.Request.Host
 	
 	c.HTML(http.StatusOK, "base.html", gin.H{
-		"title":    "图像处理工作台 - Antimg",
+		"title":    "Antimg",
 		"username": username,
 		"token":    user.APIToken, // 使用API Token而不是Web Token
 		"baseURL":  baseURL,
@@ -88,7 +88,7 @@ func (h *ImageHandler) WebProcessImage(c *gin.Context) {
 	file, err := c.FormFile("image")
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "base.html", gin.H{
-			"title":    "图像处理工作台 - Antimg",
+			"title":    "Antimg",
 			"username": c.GetString("username"),
 			"error":    "文件上传失败",
 			"page":     "process",
@@ -99,7 +99,7 @@ func (h *ImageHandler) WebProcessImage(c *gin.Context) {
 	// 验证文件类型
 	if err := validateImageFile(file); err != nil {
 		c.HTML(http.StatusBadRequest, "base.html", gin.H{
-			"title":    "图像处理工作台 - Antimg",
+			"title":    "Antimg",
 			"username": c.GetString("username"),
 			"error":    err.Error(),
 			"page":     "process",
@@ -110,7 +110,7 @@ func (h *ImageHandler) WebProcessImage(c *gin.Context) {
 	src, err := file.Open()
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "base.html", gin.H{
-			"title":    "图像处理工作台 - Antimg",
+			"title":    "Antimg",
 			"username": c.GetString("username"),
 			"error":    "文件打开错误",
 			"page":     "process",
@@ -141,3 +141,4 @@ func (h *ImageHandler) WebProcessImage(c *gin.Context) {
 	// 直接返回处理后的图片，保持原格式
 	utils.SendImageResponse(c, format, processedImg)
 }
+

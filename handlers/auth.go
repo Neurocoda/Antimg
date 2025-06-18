@@ -120,7 +120,7 @@ func (h *AuthHandler) WebLogin(c *gin.Context) {
 		
 		// 直接渲染工作台页面，避免重定向导致的cookie延迟问题
 		c.HTML(http.StatusOK, "base.html", gin.H{
-			"title":      "图像处理工作台 - Antimg",
+			"title":      "Antimg",
 			"username":   user.Username,
 			"token":      user.APIToken,
 			"baseURL":    baseURL,
@@ -162,3 +162,4 @@ func (h *AuthHandler) ResetAPIToken(c *gin.Context) {
 		"message":   "API Token已重置",
 	})
 }
+
