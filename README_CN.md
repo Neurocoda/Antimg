@@ -18,7 +18,7 @@
 - 🖥️ **交互式Web界面**：浏览器直用的可视化操作台
 - 🔌 **提供 API 接口**：支持API调用，为低算力设备提供处理支持
 - 📦 **格式通配**：自动识别 **JPEG/PNG/BMP/WebP **格式
-- 🍎 **Shortcut**：提供 ISO Shortcut 用于快速调用 API 进行图像处理
+- 🍎 **Shortcut**：提供 Apple Shortcut 用于快速调用 API 进行图像处理
 
 
 **演示站点:** [Demo Site](https://antimg.neurocoda.com)
