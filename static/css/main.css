@@ -1,0 +1,761 @@
+/* 主要样式文件 - 可以在这里添加额外的CSS样式 */
+
+/* 拖拽上传区域样式 */
+.upload-area {
+    border: 2px dashed var(--secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0,0,0,0.02);
+}
+
+.upload-area:hover {
+    border-color: var(--accent);
+    background: rgba(0,113,227,0.05);
+}
+
+.upload-area.dragover {
+    border-color: var(--accent);
+    background: rgba(0,113,227,0.1);
+    transform: scale(1.02);
+}
+
+/* 表格样式 */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.table th {
+    background: rgba(0,0,0,0.05);
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.table tr:hover {
+    background: rgba(0,0,0,0.02);
+}
+
+/* 警告按钮样式 */
+.btn-warning {
+    background: var(--warning) !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background: #e6900a !important;
+    transform: translateY(-1px);
+}
+
+/* API 网格响应式布局 */
+.api-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* 响应式设计 */
+@media (min-width: 1400px) {
+    .api-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .api-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* 移动端按钮优化 */
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        min-height: 44px; /* 触摸友好的最小高度 */
+    }
+    
+    /* 移动端表单优化 */
+    .form-group input {
+        padding: 0.8rem;
+        font-size: 1rem; /* 防止iOS缩放 */
+    }
+    
+    /* 移动端上传区域 */
+    .upload-area {
+        padding: 1.5rem 1rem;
+    }
+    
+    .upload-area h4 {
+        font-size: 1rem;
+    }
+    
+    .upload-area p {
+        font-size: 0.85rem;
+    }
+    
+    /* 移动端代码块 */
+    pre {
+        font-size: 0.75rem !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    code {
+        font-size: 0.75rem !important;
+        word-break: break-all;
+    }
+    
+    .table {
+        font-size: 0.9rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .api-grid {
+        gap: 0.75rem;
+    }
+    
+    /* 超小屏幕优化 */
+    .btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    /* 移动端标题优化 */
+    h1 {
+        font-size: 1.8rem !important;
+    }
+    
+    h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    h4 {
+        font-size: 1rem !important;
+    }
+    
+    /* 移动端间距优化 */
+    .api-grid > div {
+        padding: 1rem !important;
+    }
+    
+    /* 移动端按钮组 */
+    .btn-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+    }
+}
+
+/* 现代化滑块样式 */
+.custom-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+    outline: none;
+    margin: 1.5rem 0;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    border: none;
+    position: relative;
+}
+
+.custom-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.custom-range::-webkit-slider-thumb:active {
+    transform: scale(1.1);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,0,0,0.2);
+}
+
+.custom-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    border: none;
+    -moz-appearance: none;
+}
+
+.custom-range::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.custom-range::-moz-range-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+    border: none;
+}
+
+.custom-range::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.custom-range::-ms-track {
+    width: 100%;
+    height: 6px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.custom-range::-ms-fill-lower,
+.custom-range::-ms-fill-upper {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+/* 滑块容器样式 */
+.range-container {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.range-progress {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 6px;
+    background: linear-gradient(90deg, 
+        #10b981 0%,    /* 绿色 */
+        #f59e0b 50%,   /* 橙色 */
+        #ef4444 100%   /* 红色 */
+    );
+    border-radius: 10px;
+    transform: translateY(-50%);
+    transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.range-value {
+    background: #10b981;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    min-width: 3.5rem;
+    text-align: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Monaco', 'Menlo', monospace;
+}
+
+/* 移动端滑块优化 */
+@media (max-width: 768px) {
+    .custom-range::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .custom-range::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .custom-range::-ms-thumb {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .custom-range {
+        height: 8px;
+        margin: 2rem 0;
+    }
+    
+    .range-progress {
+        height: 8px;
+    }
+    
+    .range-value {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.6rem;
+        min-width: 3rem;
+    }
+}
+
+/* 图片对比容器样式 */
+#imageComparisonContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    min-height: 320px;
+    width: 100%;
+}
+
+#originalImageContainer {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+#processedImageContainer {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+/* 加载动画容器样式 */
+#loadingAnimation {
+    background: linear-gradient(135deg, rgba(0,113,227,0.05), rgba(102,126,234,0.05));
+    border: 2px dashed rgba(0,113,227,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#loadingAnimation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 进度条样式增强 */
+#processingProgress {
+    background: rgba(0,113,227,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#progressBar {
+    background: linear-gradient(90deg, var(--accent), #667eea, #764ba2);
+    background-size: 200% 100%;
+    animation: progressGradient 2s ease-in-out infinite;
+    border-radius: 10px;
+    position: relative;
+}
+
+#progressBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progressShine 1.5s ease-in-out infinite;
+}
+
+@keyframes progressGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 处理后图片样式 */
+#processedImg {
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+#processedImg:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 8px 25px rgba(0,113,227,0.3);
+}
+
+/* 下载按钮样式 */
+#downloadBtn {
+    background: linear-gradient(135deg, var(--success), #48bb78);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#downloadBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+#downloadBtn:hover::before {
+    left: 100%;
+}
+
+#downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(72,187,120,0.4);
+}
+
+/* 实时预览增强样式 */
+#imageComparisonContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    min-height: 320px;
+    position: relative;
+}
+
+#originalImageContainer {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+#processedImageContainer {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* 加载动画容器增强样式 */
+#loadingAnimation {
+    background: linear-gradient(135deg, rgba(0,113,227,0.05), rgba(102,126,234,0.05));
+    border: 2px dashed rgba(0,113,227,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#loadingAnimation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 进度条样式增强 */
+#processingProgress {
+    background: rgba(0,113,227,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#progressBar {
+    background: linear-gradient(90deg, var(--accent), #667eea, #764ba2);
+    background-size: 200% 100%;
+    animation: progressGradient 2s ease-in-out infinite;
+    border-radius: 10px;
+    position: relative;
+}
+
+#progressBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progressShine 1.5s ease-in-out infinite;
+}
+
+@keyframes progressGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 处理后图片样式增强 */
+#processedImg {
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+#processedImg:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 8px 25px rgba(0,113,227,0.3);
+}
+
+/* 移动端响应式优化 */
+@media (max-width: 768px) {
+    #imageComparisonContainer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #originalImageContainer,
+    #processedImageContainer {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+    
+    #processedImageContainer {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+    }
+}
+
+/* 移动端图片对比布局 */
+@media (max-width: 768px) {
+    #imageComparisonContainer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #originalImageContainer,
+    #processedImageContainer {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* 实时预览增强样式 */
+#imageComparisonContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    min-height: 320px;
+    position: relative;
+}
+
+#originalImageContainer {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+#processedImageContainer {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* 加载动画容器增强样式 */
+#loadingAnimation {
+    background: linear-gradient(135deg, rgba(0,113,227,0.05), rgba(102,126,234,0.05));
+    border: 2px dashed rgba(0,113,227,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#loadingAnimation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 进度条样式增强 */
+#processingProgress {
+    background: rgba(0,113,227,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#progressBar {
+    background: linear-gradient(90deg, var(--accent), #667eea, #764ba2);
+    background-size: 200% 100%;
+    animation: progressGradient 2s ease-in-out infinite;
+    border-radius: 10px;
+    position: relative;
+}
+
+#progressBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progressShine 1.5s ease-in-out infinite;
+}
+
+@keyframes progressGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 处理后图片样式增强 */
+#processedImg {
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+#processedImg:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 8px 25px rgba(0,113,227,0.3);
+}
+
+/* 下载按钮增强样式 */
+#downloadBtn {
+    background: linear-gradient(135deg, var(--success), #48bb78) !important;
+    border: none;
+    color: white !important;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#downloadBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+#downloadBtn:hover::before {
+    left: 100%;
+}
+
+#downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(72,187,120,0.4);
+}
+
+/* 攻击强度信息样式 */
+#attackLevelInfo {
+    background: linear-gradient(135deg, rgba(0,113,227,0.1), rgba(102,126,234,0.1));
+    border-left: 4px solid var(--accent);
+    padding: 0.8rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 0.5rem;
+}
+
+#currentAttackValue {
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'Monaco', 'Menlo', monospace;
+}
+
+/* 处理动画旋转器样式 */
+.processing-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0,113,227,0.2);
+    border-top: 4px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 加载动画容器尺寸匹配优化 */
+#loadingAnimation {
+    background: linear-gradient(135deg, rgba(0,113,227,0.05), rgba(102,126,234,0.05));
+    border: 2px dashed rgba(0,113,227,0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* 动态设置尺寸，与原图保持一致 */
+    box-sizing: border-box;
+}
+
+/* 确保加载区域与原图尺寸完全匹配 */
+.loading-size-matched {
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}

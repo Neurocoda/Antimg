@@ -1,0 +1,35 @@
+{{define "login"}}
+<div class="card card-login">
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">
+            <span data-i18n="welcomeBack">欢迎回来</span>
+        </h1>
+        <p style="color: var(--secondary); font-size: 1rem;">
+            <span data-i18n="loginDesc">登录您的 Antimg 账户</span>
+        </p>
+    </div>
+    
+    {{if .error}}
+    <div class="alert alert-error">
+        <strong data-i18n="loginFailed">登录失败</strong><br>{{.error}}
+    </div>
+    {{end}}
+    
+    <form method="POST" action="/login">
+        <div class="form-group">
+            <label for="username" data-i18n="username">用户名</label>
+            <input type="text" id="username" name="username" data-placeholder-zh="请输入用户名" data-placeholder-en="Enter username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password" data-i18n="password">密码</label>
+            <input type="password" id="password" name="password" data-placeholder-zh="请输入密码" data-placeholder-en="Enter password" required>
+        </div>
+        
+        <button type="submit" class="btn" style="width: 100%; margin-bottom: 1.5rem;">
+            <span data-i18n="loginBtn">登录账户</span>
+        </button>
+    </form>
+    
+</div>
+{{end}}

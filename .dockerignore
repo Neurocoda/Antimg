@@ -1,0 +1,59 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+SECURITY_FIXES.md
+*.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Runtime
+uploads/
+tmp/
+temp/
+
+# Build artifacts
+main
+antimg
+*.exe
+
+# Test files
+*_test.go
+tmp_rovodev_*
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies (will be downloaded in container)
+vendor/
+
+# Coverage
+coverage.out
+*.cover
