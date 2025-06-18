@@ -99,24 +99,16 @@ Authenticated administrators can manage API tokens (view/regenerate) through the
 
 > Apple Shortcut: https://www.icloud.com/shortcuts/778f82e2dd924a28a41ed0682ba5ff31
 
-#### Authentication
-
-```bash
-curl -X POST http://localhost:8080/api/auth/token \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"YOUR_ADMIN_PASSWORD"}'
-```
-
 #### Image Processing
 ```bash
-curl -X POST http://localhost:8080/api/v1/process \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+curl -X POST http://localhost:8080/api/attack \
+  -H "Authorization: Bearer API_TOKEN" \
   -F "image=@input.jpg" \
-  -F "intensity=0.75" \
+  -F "attackLevel=0.75" \
   -o processed_image.jpg
 ```
 
-> **Note:** The term `API token` here does not refer to JWT. For details, refer to the web interface after administrator login.
+> **Note:** The term `API_TOKEN` here does not refer to JWT. For details, refer to the web interface after administrator login.
 
 
 
