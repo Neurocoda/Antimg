@@ -13,8 +13,8 @@
     <a href="https://hub.docker.com/r/neurocoda/antimg" style="text-decoration: none;">
       <img src="https://img.shields.io/docker/pulls/neurocoda/antimg?logo=docker" alt="Docker Pulls">
     </a>
-    <a href="https://goreportcard.com/badge/github.com/Neurocoda/Antimg" style="text-decoration: none;">
-      <img src="https://goreportcard.com/report/github.com/Neurocoda/Antimg" alt="Go Report"> 
+    <a href="https://goreportcard.com/report/github.com/Neurocoda/Antimg" style="text-decoration: none;">
+      <img src="https://goreportcard.com/badge/github.com/Neurocoda/Antimg" alt="Go Report"> 
     </a>
     <a href="https://opensource.org/licenses/MIT" style="text-decoration: none;">
       <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
