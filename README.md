@@ -26,7 +26,7 @@
   
   <img src="static/logo.svg" alt="Antimg" width="180">
 </div>
-
+A image Blind Watermark attack processing tool with Docker deployment support and comprehensive security features.
 
 
 
