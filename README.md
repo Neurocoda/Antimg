@@ -1,7 +1,8 @@
 # 🎯 Antimg - Advanced Image Watermark Attack Tool
 
-[![Main Branch Docker Build](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml)[![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg)](https://hub.docker.com/r/neurocoda/antimg)
+[![Main Branch Docker Build](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image.yml)
 [![API-CORE Branch Docker Build](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image-api.yml/badge.svg)](https://github.com/Neurocoda/Antimg/actions/workflows/docker-image-api.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/neurocoda/antimg)](https://hub.docker.com/r/neurocoda/antimg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Neurocoda/Antimg)](https://goreportcard.com/report/github.com/Neurocoda/Antimg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
