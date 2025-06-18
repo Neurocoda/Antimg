@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: antimg  # 直接定义镜像名避免转换问题
+  IMAGE_NAME: antimg
 
 jobs:
   docker-build:
