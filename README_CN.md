@@ -94,22 +94,15 @@ docker-compose up -d --build
 
 > Apple Shortcut: https://www.icloud.com/shortcuts/778f82e2dd924a28a41ed0682ba5ff31
 
-#### 认证鉴权
-
-```bash
-curl -X POST http://localhost:8080/api/auth/token \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"管理员密码"}'
-```
 
 #### 图片处理
 
 ```bash
-curl -X POST http://localhost:8080/api/v1/process \
-  -H "Authorization: Bearer 你的 API 令牌" \
-  -F "image=@原始图片.jpg" \
-  -F "intensity=0.75" \
-  -o 处理结果.jpg
+curl -X POST http://localhost:8080/api/attack \
+  -H "Authorization: Bearer API_TOKEN" \
+  -F "image=@input.jpg" \
+  -F "attackLevel=0.75" \
+  -o processed_image.jpg
 ```
 
 > 注：这里的 `API 令牌` 不是指 JWT，详见管理员登录后的 Web 端。
