@@ -64,7 +64,7 @@ func (h *AuthHandler) LoginPage(c *gin.Context) {
 			return
 		}
 	}
-	
+
 	c.HTML(http.StatusOK, "base.html", gin.H{
 		"title": "登录 - Antimg",
 		"page":  "login",
@@ -117,7 +117,7 @@ func (h *AuthHandler) WebLogin(c *gin.Context) {
 			scheme = "https"
 		}
 		baseURL := scheme + "://" + c.Request.Host
-		
+
 		// 直接渲染工作台页面，避免重定向导致的cookie延迟问题
 		c.HTML(http.StatusOK, "base.html", gin.H{
 			"title":      "Antimg",
@@ -162,4 +162,3 @@ func (h *AuthHandler) ResetAPIToken(c *gin.Context) {
 		"message":   "API Token已重置",
 	})
 }
-

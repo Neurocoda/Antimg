@@ -17,7 +17,7 @@ var (
 func main() {
 	// 打印版本信息
 	log.Printf("🚀 Antimg v%s (built at %s, revision %s)", Version, BuildTime, Revision)
-	
+
 	// 初始化配置
 	config.Init()
 

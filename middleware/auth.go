@@ -177,4 +177,3 @@ func WebAuthMiddleware() gin.HandlerFunc {
 		c.Next()
 	}
 }
-

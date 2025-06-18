@@ -31,7 +31,7 @@ func (rl *RateLimiter) Allow(clientIP string) bool {
 	defer rl.mutex.Unlock()
 
 	now := time.Now()
-	
+
 	// 获取客户端的请求历史
 	requests, exists := rl.requests[clientIP]
 	if !exists {
@@ -62,10 +62,10 @@ func (rl *RateLimiter) Allow(clientIP string) bool {
 // RateLimitMiddleware 速率限制中间件
 func RateLimitMiddleware(limit int, window time.Duration) gin.HandlerFunc {
 	limiter := NewRateLimiter(limit, window)
-	
+
 	return func(c *gin.Context) {
 		clientIP := c.ClientIP()
-		
+
 		if !limiter.Allow(clientIP) {
 			c.JSON(http.StatusTooManyRequests, gin.H{
 				"error": "Too many requests, please try again later",
@@ -74,7 +74,7 @@ func RateLimitMiddleware(limit int, window time.Duration) gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		
+
 		c.Next()
 	}
 }

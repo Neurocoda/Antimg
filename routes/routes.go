@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 	"time"
-	
+
 	"github.com/Neurocoda/Antimg/config"
 	"github.com/Neurocoda/Antimg/handlers"
 	"github.com/Neurocoda/Antimg/middleware"
@@ -39,7 +39,7 @@ func SetupRoutes() *gin.Engine {
 		var username string
 		var token string
 		var isLoggedIn bool
-		
+
 		cookieToken, err := c.Cookie("auth_token")
 		if err == nil && cookieToken != "" {
 			// 验证token是否有效
@@ -56,14 +56,14 @@ func SetupRoutes() *gin.Engine {
 				}
 			}
 		}
-		
+
 		// 构建基础URL
 		scheme := "http"
 		if c.Request.TLS != nil {
 			scheme = "https"
 		}
 		baseURL := scheme + "://" + c.Request.Host
-		
+
 		// 渲染工作台页面
 		c.HTML(http.StatusOK, "base.html", gin.H{
 			"title":      "Antimg",
@@ -111,4 +111,3 @@ func SetupRoutes() *gin.Engine {
 
 	return r
 }
-

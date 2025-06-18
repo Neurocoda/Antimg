@@ -12,12 +12,12 @@ import (
 	"time"
 
 	"github.com/disintegration/imaging"
-	_ "image/png"
 	_ "golang.org/x/image/bmp"
 	_ "golang.org/x/image/webp"
+	_ "image/png"
 )
 
-type ImageService struct{
+type ImageService struct {
 	rng *rand.Rand
 }
 
@@ -64,7 +64,6 @@ func (s *ImageService) ProcessImage(src io.Reader, attackLevel float64) (image.I
 		return nil, "", errors.New("图片处理超时，请尝试较小的图片或降低攻击强度")
 	}
 }
-
 
 // attackWatermark 执行水印攻击算法
 func (s *ImageService) attackWatermark(img image.Image, attackLevel float64) image.Image {
@@ -283,6 +282,3 @@ func (s *ImageService) applyFinalMixedAttack(img image.Image, level float64) ima
 
 	return result
 }
-
-
-

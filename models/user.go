@@ -44,14 +44,14 @@ func createDefaultAdmin() {
 	if config.AppConfig == nil {
 		config.Init()
 	}
-	
+
 	adminPassword := config.AppConfig.AdminPassword
 	if adminPassword == "" {
 		adminPassword = "admin123" // 后备密码
 	}
-	
+
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(adminPassword), bcrypt.DefaultCost)
-	
+
 	// 创建用户对象
 	user := &User{
 		ID:        userID,
@@ -62,11 +62,11 @@ func createDefaultAdmin() {
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
-	
+
 	// 生成API Token（需要用户信息）
 	apiToken, _ := generateJWTAPIToken(user)
 	user.APIToken = apiToken
-	
+
 	users[config.AppConfig.AdminUsername] = user
 	userID++
 }
@@ -101,7 +101,7 @@ func generateJWTAPIToken(user *User) (string, error) {
 	// 添加随机数确保每次生成的token都不同
 	randomBytes := make([]byte, 8)
 	rand.Read(randomBytes)
-	
+
 	// 直接在这里实现JWT生成，避免循环导入
 	claims := map[string]interface{}{
 		"username": user.Username,
@@ -110,16 +110,16 @@ func generateJWTAPIToken(user *User) (string, error) {
 		"jti":      hex.EncodeToString(randomBytes), // JWT ID，确保唯一性
 		// 不设置exp字段，表示永不过期
 	}
-	
+
 	// 创建token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims(claims))
-	
+
 	// 签名token
 	tokenString, err := token.SignedString([]byte(config.AppConfig.JWTSecret))
 	if err != nil {
 		return "", err
 	}
-	
+
 	return tokenString, nil
 }
 
@@ -138,7 +138,7 @@ func ResetAPIToken(username string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	user.APIToken = newToken
 	user.UpdatedAt = time.Now()
 

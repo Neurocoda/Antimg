@@ -66,14 +66,14 @@ func (h *ImageHandler) ProcessPage(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
-	
+
 	// 构建基础URL
 	scheme := "http"
 	if c.Request.TLS != nil {
 		scheme = "https"
 	}
 	baseURL := scheme + "://" + c.Request.Host
-	
+
 	c.HTML(http.StatusOK, "base.html", gin.H{
 		"title":    "Antimg",
 		"username": username,
@@ -141,4 +141,3 @@ func (h *ImageHandler) WebProcessImage(c *gin.Context) {
 	// 直接返回处理后的图片，保持原格式
 	utils.SendImageResponse(c, format, processedImg)
 }
-
