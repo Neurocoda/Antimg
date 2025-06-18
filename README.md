@@ -78,7 +78,7 @@ docker-compose up -d --build
 
 Authenticated administrators can manage API tokens (view/regenerate) through the web console post-login.
 
-> IOS Shortcut: https://www.icloud.com/shortcuts/778f82e2dd924a28a41ed0682ba5ff31
+> Apple Shortcut: https://www.icloud.com/shortcuts/778f82e2dd924a28a41ed0682ba5ff31
 
 #### Authentication
 
