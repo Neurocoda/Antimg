@@ -1,0 +1,51 @@
+name: Multi-arch API Docker Build
+
+on:
+  push:
+    branches: [ "api-core" ]
+  pull_request:
+    branches: [ "api-core" ]
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  docker-api-build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate image name with -api suffix
+        run: |
+          lower_name=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "FINAL_IMAGE_NAME=${lower_name}-api" >> $GITHUB_ENV
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push API Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64, linux/arm64, linux/arm/v7
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.FINAL_IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.FINAL_IMAGE_NAME }}:${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=${{ github.repositoryUrl }}
+          builder: api-builder-${{ github.run_number }}
+          cache-from: type=gha
+          cache-to: type=gha
