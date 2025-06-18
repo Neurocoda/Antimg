@@ -13,9 +13,6 @@
     <a href="https://hub.docker.com/r/neurocoda/antimg" style="text-decoration: none;">
       <img src="https://img.shields.io/docker/pulls/neurocoda/antimg?logo=docker" alt="Docker Pulls">
     </a>
-    <a href="https://hub.docker.com/r/neurocoda/antimg-api" style="text-decoration: none;">
-      <img src="https://img.shields.io/docker/pulls/neurocoda/antimg-api?logo=docker" alt="API Pulls">
-    </a>
     <a href="https://goreportcard.com/report/github.com/Neurocoda/Antimg" style="text-decoration: none;">
       <img src="https://goreportcard.com/badge/github.com/Neurocoda/Antimg" alt="Go Report"> 
     </a>
